@@ -1,0 +1,303 @@
+extends ../layout/main
+
+block append css
+    link(href="https://unpkg.com/aos@2.3.1/dist/aos.css", rel="stylesheet")
+    link(rel="stylesheet", href="/assets/css/toast.css")
+    link(rel="stylesheet", href="/assets/css/index.css")
+
+block content
+  .app
+    header.header
+      img.header__logo(src='/assets/img/logo.png' alt='')
+      ul.header__list
+        li.header__list-item
+          a.header__list-link(href='#') Download
+        li.header__list-item
+          a.header__list-link(href='') Help
+        li.header__list-item
+          span#btn-enable-login.header__list-link.header__list-link--radius(href='' style='margin-left: 20px;') Log in
+        li.header__list-item
+          span#btn-enable-signUp.header__list-link.header__list-link--radius.header__list-link--fillbg(href='' style='margin-right: -20px;') Sign up
+    .container
+      .slide-1
+        .slide-1-content
+          h3.content-slogan
+            | Open the world of music.
+          h3.content-slogan
+            | It&apos;s all here.
+          .content-control
+            a.content-control__btn.btn.btn-gradient(href='#')
+              | MUSICBOX PREMIUM
+            a.content-control__btn.btn(href='#')
+              | MUSICBOX FREE
+          p.content-detail
+            | 1-month free trail
+            span.content-price $7.99
+            |                         /month after
+      .slide-2
+        .content-2(data-aos='fade-up')
+          img.content-2__img(src='/assets/img/slide-2.png')
+          .content-2__detail
+            .content-2__detail-title
+              .content-2__detail-title__img
+              h2.content-2__detail-title__description
+                | FLOW
+            p.content-2__detail-info
+              | Listen to a personalized mix of tracks based your 
+              br
+              | listening history, or create your
+              |                             own mix of genres, artists 
+              br
+              | and playlists - letting you enjoy more of the music you
+              |                             love.
+      .slide-3
+        .content-3(data-aos='fade-up-right')
+          h3.content-3__title
+            | Listen anytime, anywhere
+          p.content-3__description
+            | All your favorite songs and episodes are always 
+            br
+            |                         available - even without WiFi or LTE.
+      .slide-4
+        .content-4(data-aos='zoom-in-down')
+          .content-4__detail
+            h3.content-4__detail-title
+              | Find the music you want
+            p.content-4__detail-description
+              | Search for your favorite songs using description,
+              br
+              |                             or turn on the 
+              span.content-4__detail--blue MusicFinder
+              |  feature to find the
+              |                             song
+              br
+              |                             that is playing near you.
+          img.content-4-img(src='/assets/img/slide-4.png' alt='')
+        .info-4(data-aos='fade-left')
+          h3.info-4__title
+            | Why go Premium?
+          ul.info-4__list
+            li.info-4__item
+              .info-4__item-circe
+                img.info-4__item-icon(src='/assets/img/offline.png')
+              h4.info-4__item-title
+                | Offline mode.
+              p.info-4__item-description
+                | Save and listen anywhere
+            li.info-4__item
+              .info-4__item-circe
+                img.info-4__item-icon(src='/assets/img/hq.png')
+              h4.info-4__item-title
+                | High quality audio.
+              p.info-4__item-description
+                | Enjoy the full range of sound.
+            li.info-4__item
+              .info-4__item-circe
+                img.info-4__item-icon(src='/assets/img/no-ads.png')
+              h4.info-4__item-title
+                | No ads.
+              p.info-4__item-description
+                | Enjoy nonstop music.
+            li.info-4__item
+              .info-4__item-circe
+                img.info-4__item-icon(src='/assets/img/skip.png')
+              h4.info-4__item-title
+                | Unlimited skips.
+              p.info-4__item-description
+                | Just tap skip.
+          h4.info-4__slogan
+            | Listen free or subscribe to MusicBox Premium
+          .info-4__product
+            .info-4__product-item
+              .info-4__product-item__combo
+                h4.info-4__product-item__combo-title
+                  | MusicBox Free
+                span.info-4__product-item__combo-price
+                  span.info-4__product-item__combo-price-money
+                    | $0.00
+                  |                                     /month
+                ul.info-4__product-item__combo-list
+                  li.info-4__product-item__combo-item
+                    i.far.fa-check.info-4__product-item__combo-icon
+                    |                                         Online Listen
+                  li.info-4__product-item__combo-item
+                    i.far.fa-check.info-4__product-item__combo-icon
+                    |                                         Regular audio
+                  li.info-4__product-item__combo-item
+                    i.far.fa-check.info-4__product-item__combo-icon
+                    |                                         With advertising
+                  li.info-4__product-item__combo-item
+                    i.far.fa-check.info-4__product-item__combo-icon
+                    |                                         30 skips per day
+              a.btn.info-4__product-item__btn(href='#')
+                | GET MUSICBOX FREE
+            .info-4__product-item
+              .info-4__product-item__combo.info-4__product-item__combo--gradient
+                h4.info-4__product-item__combo-title
+                  | MusicBox Premium
+                span.info-4__product-item__combo-price
+                  span.info-4__product-item__combo-price-money.info-4__product-item__combo-price-money--blue
+                    | $7.99
+                  |                                     /month
+                ul.info-4__product-item__combo-list
+                  li.info-4__product-item__combo-item
+                    i.far.fa-check.info-4__product-item__combo-icon.info-4__product-item__combo-icon--blue
+                    |                                         Offline mode
+                  li.info-4__product-item__combo-item
+                    i.far.fa-check.info-4__product-item__combo-icon.info-4__product-item__combo-icon--blue
+                    |                                         High quality audio
+                  li.info-4__product-item__combo-item
+                    i.far.fa-check.info-4__product-item__combo-icon.info-4__product-item__combo-icon--blue
+                    |                                         No ads
+                  li.info-4__product-item__combo-item
+                    i.far.fa-check.info-4__product-item__combo-icon.info-4__product-item__combo-icon--blue
+                    |                                         Unlimited skips
+              a.info-4__product-item__btn.btn.btn-gradient(href='#')
+                | GET MUSICBOX PREMIUM
+    footer.footer
+      .introduce
+        .introduce__container
+          img.introduce__img(src='/assets/img/logo.png' alt='logo' srcset='')
+          .introduce__link
+            .introduce__link-detail
+              h4.introduce__link-detail__title MUSICBOX
+              ul.introduce__link-detail__list
+                li.introduce__link-detail__item
+                  a.introduce__link-detail__link(href='#') About
+                li.introduce__link-detail__item
+                  a.introduce__link-detail__link(href='#') Premium
+                li.introduce__link-detail__item
+                  a.introduce__link-detail__link(href='#') Features
+            .introduce__link-detail
+              h4.introduce__link-detail__title COMMUNITIES
+              ul.introduce__link-detail__list
+                li.introduce__link-detail__item
+                  a.introduce__link-detail__link(href='#') For Artists
+                li.introduce__link-detail__item
+                  a.introduce__link-detail__link(href='#') Developers
+                li.introduce__link-detail__item
+                  a.introduce__link-detail__link(href='#') Press
+            .introduce__link-detail
+              h4.introduce__link-detail__title USEFUL LINKS
+              ul.introduce__link-detail__list
+                li.introduce__link-detail__item
+                  a.introduce__link-detail__link(href='#') Help
+                li.introduce__link-detail__item
+                  a.introduce__link-detail__link(href='#') Web Player
+                li.introduce__link-detail__item
+                  a.introduce__link-detail__link(href='#') Explore Channels
+                li.introduce__link-detail__item
+                  a.introduce__link-detail__link(href='#') Download App
+        .introduce__list-icon
+          a.introduce__list-icon__circle(href='#')
+            i.fab.fa-facebook-f.introduce__list-icon__circle-icon
+          a.introduce__list-icon__circle(href='#')
+            i.fab.fa-twitter.introduce__list-icon__circle-icon
+          a.introduce__list-icon__circle(href='#')
+            i.fab.fa-instagram.introduce__list-icon__circle-icon
+      .rules
+        ul.rules__list
+          li.rules__item
+            a.rules__link(href='#') Legal
+          li.rules__item
+            a.rules__link(href='#') Privacy
+          li.rules__item
+            a.rules__link(href='#') Cookies
+          li.rules__item
+            a.rules__link(href='#') Ads
+        span.rules__copyright
+          i.far.fa-copyright
+          |                     2019 MusicBox
+block extend
+  #toast
+  #modal.modal
+    .modal__overlay
+    .modal__body
+      span#close-modal.modal__close
+        i.fas.fa-times
+      // Form Register
+      #sign-form.auth-form(style='display: none;')
+        h3.auth-form__heading Ready to sign up?
+        .auth-form__social
+          a.auth-form__social-icon(href='#')
+            img(src='/assets/img/fb-logo.png' width='9.33px' height='20px')
+            |                         Facebook
+          a.auth-form__social-icon(href='#')
+            img(src='/assets/img/google-logo.png' width='20px' height='20px')
+            |                         Google
+        .auth-form__form
+          .auth-form__form-control
+            .auth-form__group
+              input.auth-form__input(type='text' required='')
+              label#email-sign.auth-form__label(for='') Email address
+          .auth-form__form-control
+            .auth-form__group
+              input#pass-sign.auth-form__input(type='password' required='')
+              label.auth-form__label(for='') Password
+          .auth-form__form-control
+            .auth-form__group
+              input#repeat-pass-sign.auth-form__input(type='password' required='')
+              label.auth-form__label(for='') Repeat password
+          .auth-form__form-control
+            .auth-form__group
+              select#year.auth-form__input(name='year')
+              label.auth-form__label(for='') Year
+            .auth-form__group
+              select#month.auth-form__input(name='month' disabled='')
+              label.auth-form__label(for='') Month
+            .auth-form__group
+              select#date.auth-form__input(name='date' disabled='')
+              label.auth-form__label(for='') Date
+        p.auth-form__policy
+          | By clicking on &quot;Sign up&quot;, you accept the 
+          br
+          a.auth-form__link(href='#') Terms and Conditions of Use
+          |  .
+        span#btn-form-signup.auth-form__btn.auth-form__btn-signup.auth-form__btn--primary
+          | SIGN UP
+        p.auth-form__link-login
+          | Already have an account?
+          span#switch-login.auth-form__link(style='cursor: pointer;') Log in
+          | .
+      // Form Login
+      #login-form.auth-form
+        h3.auth-form__heading What will you listen to today?
+        .auth-form__social
+          a.auth-form__social-icon(href='#')
+            img(src='/assets/img/fb-logo.png' width='9.33px' height='20px')
+            |                         Facebook
+          a.auth-form__social-icon(href='#')
+            img(src='/assets/img/google-logo.png' width='20px' height='20px')
+            |                         Google
+        .auth-form__form
+          .auth-form__form-control
+            .auth-form__group
+              input#email-login.auth-form__input(type='text' required='')
+              label.auth-form__label(for='email') Email address
+          .auth-form__form-control
+            .auth-form__group
+              input#pass-login.auth-form__input(type='password' required='')
+              label.auth-form__label(for='') Password
+          .auth-form__form-control
+            .auth-form__group
+              .auth-form__group-item
+                input#remember.auth-form__group-item__checkbox(type='checkbox' name='remember' value='Yes')
+                label.auth-form__group-item__label(for='remember') Remember me
+                br
+            .auth-form__group
+              span#btn-form-login.auth-form__group-item.auth-form__btn.auth-form__btn-login.auth-form__btn--primary
+                | LOG IN
+        a.auth-form__link(href='#' style='margin-top: 18px; margin-bottom: 51px;')
+          | Forgot your
+          | password?
+        span.auth-form__link--forget Don&apos;t have an account?
+        span#switch-signup.auth-form__btn.auth-form__btn-last
+          | SIGN UP FOR MUSICBOX
+
+
+block script
+  script(src='/assets/js/toast.js')
+  script(src='/assets/js/index.js')
+  script(src='https://unpkg.com/aos@2.3.1/dist/aos.js')
+  script.
+    AOS.init();

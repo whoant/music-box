@@ -1,0 +1,362 @@
+.player{
+    width: 1840px;
+    height: 86px;
+    max-width: 100%;
+    background-color: #3A3A3D;
+    margin: 0 auto;
+    color: var(--white-color);
+    position: fixed;
+    bottom: 10px;
+    left: 0;
+    right: 0;
+    max-width: 100%;
+    display: none;
+}
+
+.player--show{
+    display: flex;
+}
+
+.player-info{
+    flex: 1.5;
+    height: 58px;
+    margin: auto;
+    display: flex;
+    align-items: center;
+}
+
+.player-info__img{
+    
+    width: 58px;
+    height: 58px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    margin: 0 14px;
+    
+}
+
+.player-info__author{
+    margin-right: 40px;
+    width: 200px;
+}
+
+.player-info__author-title{
+    font-size: 1.6rem;
+    margin-bottom: 4px;
+}
+
+.player-info__author-name{
+    font-size: 1.4rem;
+    color: var(--text-color);
+}
+
+.player-info__btn{
+
+}
+
+.player-info__btn-contain {
+    display: inline-block;
+    cursor: pointer;
+}
+
+.player-info__btn-contain:first-child{
+    margin-right: 30px;
+}
+
+.player-icon{
+    font-size: 1.8rem;
+    transition: transform 0.5s;
+}
+
+.player-icon:hover{
+    transform: scale(1.5);
+}
+
+.player-icon--active {
+    color: var(--blue-color);
+}
+
+.player-controls{
+    flex: 4;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.player-controls__btn{
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+}
+
+.player-controls__btn-contain{
+    display: inline-block;
+    margin: 0 25px;
+    cursor: pointer;
+}
+
+.player-controls__btn-icon{
+    
+}
+
+#play > i{
+    font-size: 2.6rem;
+}
+
+.player-controls__progress{
+    
+    display: flex;
+    align-items: center;
+    font-size: 1.4rem;
+}
+
+#end-time {
+    color: var(--text-color);
+}
+
+.player-controls__progress-bar {
+    width: 560px;
+    height: 3px;
+    background-color: var(--text-color);
+    margin: 0 15px;
+}
+
+.player-controls__progress-bar__task{
+    height: 100%;
+    width: 0;
+    background: linear-gradient(90deg, #2D9BEF 0%, #9B2DEF 100%);
+    position: relative;
+}
+
+.player-controls__progress-bar:hover{
+    height: 6px;
+}
+
+.player-controls__progress-bar__task::after{
+    content: "";
+    position: absolute;
+    display: none;
+    height: 10px;
+    width: 10px;
+    border-radius: 50%;
+    background-color: #9B2DEF;
+    right: -2px;
+    top: -2px;
+}
+
+.player-controls__progress-bar:hover .player-controls__progress-bar__task::after{
+    display: block;
+}
+
+.player-setting{
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.player-queue {
+    margin-right: 20px;
+}
+
+.player-queue {
+    cursor: pointer;
+    position: relative;
+}
+
+/* Player-Queue */
+.player-queue__music{
+    position: absolute;
+    height: 600px;
+    width: 400px;
+    background-color: #303033;
+    right: 0;
+    bottom: 60px;
+    border-radius: 4px;
+    will-change: transform;
+    transform: translateY(710px);
+    transition: transform 1s ease-out;
+}
+
+.player-queue__music--active{
+    transform: translateY(0);
+}
+
+.player-queue__music-head{
+    margin: 16px 12px 42px 20px;
+   
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.player-queue__music-head-title{
+    margin: 0;
+    font-size: 1.8rem;
+}
+
+.player-queue__music-head-close{
+    font-size: 1.6rem;
+    height: 16px;
+    width: 16px;
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.5s;
+    will-change: transform;
+}
+
+.player-queue__music-head-close:hover{
+    transform: scale(2);
+}
+
+.player-queue-icon{
+
+}
+
+.player-queue__music-current, .player-queue__music-next__item{
+    margin: 0 20px;
+    
+    display: flex;
+    align-items: center;
+}
+
+.player-queue__music-img{
+    height: 50px;
+    width: 50px;
+    background-position: center;
+    background-size: contain;
+    border-radius: 4px;
+}
+
+.player-queue__music-info{
+    display: flex;
+    flex-direction: column;
+    margin-left: 14px;
+    flex-grow: 1;
+}
+
+.player-queue__music-info__title{
+    font-size: 1.6rem;
+    margin-bottom: 3px;
+}
+
+.player-queue__music-info__title--active {
+    color: var(--blue-color);
+}
+
+.player-queue__music-info__artist{
+    font-size: 1.4rem;
+    color: var(--text-color);
+}
+
+.player-queue__music-info__artist--active{
+    color: var(--white-color);
+}
+
+.player-queue__music-btn{
+    
+}
+
+.player-queue__music-btn__icon{
+    width: 18px;
+    height: 18px;
+    font-size: 1.8rem;
+    
+    cursor: pointer;  
+}
+
+.player-queue__music-btn__icon:first-child{
+    margin-right: 20px;
+
+}
+
+.player-queue__music-next{
+    margin-top: 40px;
+}
+
+.player-queue__music-next__header{
+
+    margin: 0 20px 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.next__header-title{
+    font-size: 1.8rem;
+}
+
+.next__header-shuffle{
+    font-size: 1.4rem;
+    padding: 8px 26px;
+    box-sizing: border-box;
+    border: 1.5px solid var(--white-color);
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.player-queue__music-next__list{
+    margin: 0;
+    overflow-y: scroll;
+    height: 365px;
+}
+
+.player-queue__music-next__list::-webkit-scrollbar {
+    width: 6px;
+    
+}
+
+.player-queue__music-next__list::-webkit-scrollbar-track {
+    background: #7A7A7A; 
+    border-radius: 4px;
+}
+   
+.player-queue__music-next__list::-webkit-scrollbar-thumb {
+    background: #929292; 
+    border-radius: 4px;
+}
+  
+.player-queue__music-next__item{
+    margin: 0;
+    padding: 5px 14px 5px 20px;
+}
+
+
+
+.player-queue__music-next__item:hover{
+    background-color: #3A3A3D;
+}
+
+.player-queue__music-btn__icon--hidden {
+    opacity: 0;
+}
+
+.player-queue__music-next__item:hover .player-queue__music-btn__icon--hidden{
+    opacity: 1;
+}
+
+
+
+.player-setting__volume {
+    display: flex;
+    align-items: center;
+}
+
+.volume__progress{
+    margin-left: 8px;
+    width: 80px;
+    height: 3px;
+    background-color: var(--text-color);
+}
+
+.volume__progress:hover{
+    height: 6px;
+}
+
+.volume__progerss-task{
+    height: 100%;
+    width: 100%;
+    background-color: var(--white-color);
+}
