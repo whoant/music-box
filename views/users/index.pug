@@ -51,11 +51,12 @@ block content
                                         span.resuft__item-info__type
                                             | Album by David Bowie
             li.header__right-list-item
-                .header__right-list-user__icon(style='background-image: url(/assets/img/profile-default.png);')
-                span.header__right-list-name
-                    | V&otilde; V&abreve;n Ho&agrave;ng Tu&acirc;n
-                span.header__right-list-dropdown
-                    i.fas.fa-chevron-down
+                a.header__right-list-link(href='/auth')
+                    .header__right-list-user__icon(style='background-image: url(/assets/img/profile-default.png);')
+                    span.header__right-list-name
+                        | #{firstname} #{lastname}
+                    span.header__right-list-dropdown
+                        i.fas.fa-chevron-down
     .container
         .grid-1000
             .avatar
