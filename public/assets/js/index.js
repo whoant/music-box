@@ -62,26 +62,70 @@ document.getElementById('btn-form-login').addEventListener('click', () => {
 });
 
 document.getElementById('btn-form-signup').addEventListener('click', () => {
+    let firstname = document.getElementById('fname-sign').value;
+    let lastname = document.getElementById('lname-sign').value;
+    let month = document.getElementById('month').value;
+    let year = document.getElementById('year').value;
+    let date = document.getElementById('date').value;
+    let gender = document.getElementById('gender').value;
     let email = document.getElementById('email-sign').value;
     let pass = document.getElementById('pass-sign').value;
     let repeatPass = document.getElementById('repeat-pass-sign').value;
 
-    if (email === '' || pass === '' || repeatPass === '')
+    if (date === '' || year === '' ||month === '' ||lastname === '' ||firstname === '' || email === '' || pass === '' || repeatPass === '' || gender === '')
     {
         toast({
             title: 'Error !',
-            msg: 'Please fill email or password !',
+            msg: 'Please enter your infomation!',
             type: 'error',
             duration: 3000
         });
-    }else {
+        return;
+    }
+
+    if (pass !== repeatPass) {
         toast({
-            title: 'Success !',
-            msg: 'Login success !',
-            type: 'success',
+            title: 'Error !',
+            msg: 'Please check your password!',
+            type: 'error',
             duration: 3000
         });
+        return;
     }
+
+    gender = Boolean(gender);
+
+    axios.post('/api/auth/register', {
+        firstname, lastname, email, pass, gender, year, month, date, repeatPass
+    })
+        .then(({data}) => {
+            if (data.status) {
+                toast({
+                    title: 'Success !',
+                    msg: data.msg,
+                    type: 'success',
+                    duration: 3000
+                });
+                return
+            }
+            toast({
+                title: 'Error!',
+                msg: data.msg,
+                type: 'error',
+                duration: 3000
+            });
+        })
+        .catch(err => {
+            toast({
+                title: 'Error!',
+                msg: 'Server error!',
+                type: 'error',
+                duration: 3000
+            });
+        });
+
+        
+    
 });
 
 

@@ -8,7 +8,15 @@ module.exports.postRegister = (req, res, next) => {
     if (fistname === "" || lastname === "" || gender === "" ||email === "" || pass === "" || repeatPass === "" || year === "" || month === "" || date === "") {
         res.json({
             status: false,
-            msg: "Please fill full infomation!"
+            msg: "Please enter your infomation!"
+        });
+        return;
+    }
+
+    if (pass !== repeatPass) {
+        res.json({
+            status: false,
+            msg: "Please check your password!"
         });
         return;
     }
