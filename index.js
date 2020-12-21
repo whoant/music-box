@@ -15,7 +15,7 @@ const authMiddleware = require('./middlewares/auth.middleware');
 
 const port = process.env.PORT || 8000;
 
-app.use(cookieParser());
+app.use(cookieParser(process.env.SECRET_KEY));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
