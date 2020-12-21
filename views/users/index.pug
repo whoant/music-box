@@ -1,0 +1,142 @@
+extend  ../layout/main
+
+block append css
+    link(rel="stylesheet", href="/assets/css/listmusic.css")
+    link(rel="stylesheet", href="/assets/css/edit-user.css")
+
+block content
+    header.header
+        .header__left
+            img.header__logo(src='/assets/img/logo.png' alt='logo' srcset='')
+            nav.header__navbar
+                ul.navbar-list
+                    li.navbar-item
+                        a.navbar-item__link(href='#') Home
+                    li.navbar-item
+                        a.navbar-item__link(href='#') Browse
+                    li.navbar-item.navbar-item--active
+                        a.navbar-item__link(href='#') Library
+        .header__path
+            a.header__path-name(href='#')
+                | Account
+            |                 /
+            a.header__path-name.header__path-name--bold(href='#')
+                | Settings
+        ul.header__right-list
+            li.header__right-list-item
+                i.fas.fa-search.header__right-list-icon
+                .header__right-list-search
+                    input#search.header__right-list-search-inp(type='text' name='search' placeholder='Search')
+                    .header__right-list-resuft
+                        .resuft__head
+                            h3.resuft__header
+                                | Recent searches
+                            span.resuft__clear
+                                | CLEAR
+                        ul.resuft__list
+                            li.resuft__item
+                                a.resuft__link(href='#')
+                                    .resuft__item-img
+                                    .resuft__item-info
+                                        span.resuft__item-info__title
+                                            | No Plan - EP
+                                        span.resuft__item-info__type
+                                            | Album by David Bowie
+                            li.resuft__item
+                                a.resuft__link(href='#')
+                                    .resuft__item-img.resuft__item-img--artist
+                                    .resuft__item-info
+                                        span.resuft__item-info__title
+                                            | No Plan - EP
+                                        span.resuft__item-info__type
+                                            | Album by David Bowie
+            li.header__right-list-item
+                .header__right-list-user__icon(style='background-image: url(/assets/img/profile-default.png);')
+                span.header__right-list-name
+                    | V&otilde; V&abreve;n Ho&agrave;ng Tu&acirc;n
+                span.header__right-list-dropdown
+                    i.fas.fa-chevron-down
+    .container
+        .grid-1000
+            .avatar
+                .avatar__img
+                .avatar__info
+                    h4.avatar__info-name V&otilde; V&abreve;n Ho&agrave;ng Tu&acirc;n
+                    p.avatar__info-type Free Account
+                span.btn.btn-gradient GO TO PREMIUM
+            .contact
+                h3.title Contact
+                .contact__form
+                    .contact__form-controls
+                        label.contact__form-controls-label(for='firstname') First Name
+                        input#firstname.contact__form-controls-inp(type='text' name='firstname' value= firstname)
+                    .contact__form-controls
+                        label.contact__form-controls-label(for='lastname') Last Name
+                        input#lastname.contact__form-controls-inp(type='text' name='lastname', value= lastname)
+                .contact__form
+                    .contact__form-controls
+                        label.contact__form-controls-label(for='email') Email
+                        input#email.contact__form-controls-inp(type='email' name='email', value= email)
+                .contact__form
+                    .contact__form-controls
+                        label.contact__form-controls-label(for='gender') Gender
+                        select#gender.contact__form-controls-inp(name='gender')
+                            option.contact__form-controls-option(value='false' selected=gender) Male
+                            option.contact__form-controls-option(value='true' selected=gender) Female
+
+                    .contact__form-controls
+                        label.contact__form-controls-label(for='country') Country
+                        select#country.contact__form-controls-inp(name='country')
+                            option.contact__form-controls-option(value='vn') Vietnamese
+                            option.contact__form-controls-option(value='lao') Lao
+                .contact__form
+                    .contact__form-controls
+                        label.contact__form-controls-label(for='date') Date of Birth
+                        select#date.contact__form-controls-inp(name='date')
+                    .contact__form-controls
+                        label.contact__form-controls-label(for='month') Month
+                        select#month.contact__form-controls-inp(name='month')
+                    .contact__form-controls
+                        label.contact__form-controls-label(for='year') Year
+                        select#year.contact__form-controls-inp(name='year')
+                .contact__connect
+                    h4.contact__connect-name Facebook
+                    p.contact__connect-status Not Connected
+                .contact__connect
+                    h4.contact__connect-name Google
+                    p.contact__connect-status Not Connected
+            .streaming
+                h3.title Streaming
+                h4.streaming__title Audio Quality (Premiun feature)
+                .streaming__quality
+                    .streaming__quality-radio
+                        input#normal.streaming__quality-radio__inp(type='radio' name='quality' value='normal' checked='')
+                        label.streaming__quality-radio__label(for='normal') Normal (128 kb/s)
+                    .streaming__quality-radio
+                        input#hight.streaming__quality-radio__inp(type='radio' name='quality' value='hight')
+                        label.streaming__quality-radio__label(for='hight') High (192 kb/s)
+                    .streaming__quality-radio
+                        input#hightest.streaming__quality-radio__inp(type='radio' name='quality' value='hightest')
+                        label.streaming__quality-radio__label(for='hightest') Highest (320 kb/s)
+            .account
+                h3.title Account
+                h4.account__title Enable Browser Notifications
+                .account__item.account__title
+                    h4 Language
+                    select#language-view.account__item-select(name='language-view')
+                        option.account__item-option(value='en') English
+                        option.account__item-option(value='vi') Vietnam
+                h4.account__title Change password
+                h4.account__title Add new account
+                a.account__title.account__title--pale(href='#') Terms and Condition
+                a.account__title.account__title--pale(href='#') Privacy Policy
+                a.account__title.account__title--pale(href='#') Support
+            a#logout.logout.btn(href='/auth/logout') LOG OUT
+block script
+    script
+        | let date= #{date};
+        | let month= #{month};
+        | let year= #{year};
+        
+    script(src='/assets/js/edit-user.js') 
+

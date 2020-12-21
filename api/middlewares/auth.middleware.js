@@ -1,9 +1,11 @@
 const db = require('../../db');
 
 module.exports.postRegister = (req, res, next) => {
-    let {email, pass, repeatPass, year, month, date} = req.body;
+    let {fistname, lastname, gender, email, pass, repeatPass, year, month, date} = req.body;
     
-    if (email === "" || pass === "" || repeatPass === "" || year === "" || month === "" || date === "") {
+
+
+    if (fistname === "" || lastname === "" || gender === "" ||email === "" || pass === "" || repeatPass === "" || year === "" || month === "" || date === "") {
         res.json({
             status: false,
             msg: "Please fill full infomation!"

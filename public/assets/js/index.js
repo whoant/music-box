@@ -24,32 +24,49 @@ document.getElementById('close-modal').addEventListener('click', () => {
 
 document.getElementById('btn-form-login').addEventListener('click', () => {
     let email = document.getElementById('email-login').value;
-    let password = document.getElementById('pass-login').value;
+    let pass = document.getElementById('pass-login').value;
 
-    if (email === '' || password === '')
+    if (email === '' || pass === '')
     {
         toast({
-            title: 'Error !',
-            msg: 'Please fill email or password !',
+            title: 'Error!',
+            msg: 'Please fill email or password!',
             type: 'error',
             duration: 3000
         });
-    }else {
-        toast({
-            title: 'Success !',
-            msg: 'Login success !',
-            type: 'success',
-            duration: 3000
-        });
+        return ;
     }
+
+    axios.post('/api/auth/login', {email,pass})
+        .then(({data}) => {
+            if (data.status) {
+                window.location.replace('/users');
+                return;
+            }
+            toast({
+                title: 'Error!',
+                msg: data.msg,
+                type: 'error',
+                duration: 3000
+            });
+        })
+        .catch(err => {
+            toast({
+                title: 'Error!',
+                msg: 'Server error!',
+                type: 'error',
+                duration: 3000
+            });
+        });
+
 });
 
 document.getElementById('btn-form-signup').addEventListener('click', () => {
     let email = document.getElementById('email-sign').value;
-    let password = document.getElementById('pass-sign').value;
+    let pass = document.getElementById('pass-sign').value;
     let repeatPass = document.getElementById('repeat-pass-sign').value;
 
-    if (email === '' || password === '' || repeatPass === '')
+    if (email === '' || pass === '' || repeatPass === '')
     {
         toast({
             title: 'Error !',

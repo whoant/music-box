@@ -6,7 +6,6 @@ block append css
     link(rel="stylesheet", href="/assets/css/index.css")
 
 block content
-  .app
     header.header
       img.header__logo(src='/assets/img/logo.png' alt='')
       ul.header__list
@@ -226,15 +225,22 @@ block extend
             img(src='/assets/img/google-logo.png' width='20px' height='20px')
             |                         Google
         .auth-form__form
+
           .auth-form__form-control
             .auth-form__group
               input.auth-form__input(type='text' required='')
+              label#fname-sign.auth-form__label(for='') Firstname
+            .auth-form__group
+              input.auth-form__input(type='text' required='')
+              label#lname-sign.auth-form__label(for='') Lastname
+          .auth-form__form-control
+            .auth-form__group
+              input.auth-form__input(type='email' required='')
               label#email-sign.auth-form__label(for='') Email address
           .auth-form__form-control
             .auth-form__group
               input#pass-sign.auth-form__input(type='password' required='')
               label.auth-form__label(for='') Password
-          .auth-form__form-control
             .auth-form__group
               input#repeat-pass-sign.auth-form__input(type='password' required='')
               label.auth-form__label(for='') Repeat password
@@ -243,11 +249,18 @@ block extend
               select#year.auth-form__input(name='year')
               label.auth-form__label(for='') Year
             .auth-form__group
-              select#month.auth-form__input(name='month' disabled='')
+              select#month.auth-form__input(name='month' disabled)
               label.auth-form__label(for='') Month
             .auth-form__group
-              select#date.auth-form__input(name='date' disabled='')
+              select#date.auth-form__input(name='date' disabled)
               label.auth-form__label(for='') Date
+          .auth-form__form-control
+            .auth-form__group
+              select#gender.auth-form__input(name='gender' )
+                option(value="true") Female
+                option(value="false") Male
+
+              label.auth-form__label(for='') Gender
         p.auth-form__policy
           | By clicking on &quot;Sign up&quot;, you accept the 
           br
@@ -272,7 +285,7 @@ block extend
         .auth-form__form
           .auth-form__form-control
             .auth-form__group
-              input#email-login.auth-form__input(type='text' required='')
+              input#email-login.auth-form__input(type='email' required='')
               label.auth-form__label(for='email') Email address
           .auth-form__form-control
             .auth-form__group
@@ -296,6 +309,7 @@ block extend
 
 
 block script
+  script(src="https://unpkg.com/axios/dist/axios.min.js")
   script(src='/assets/js/toast.js')
   script(src='/assets/js/index.js')
   script(src='https://unpkg.com/aos@2.3.1/dist/aos.js')

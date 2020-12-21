@@ -3,11 +3,11 @@ const shortid = require('shortid');
 const db = require('../../db');
 
 module.exports.postRegister = (req, res) => {
-    let {email, pass, repeatPass, year, month, date} = req.body;
+    let {firstname, lastname, gender, email, pass, repeatPass, year, month, date} = req.body;
     let id = shortid.generate();
     
     db.get('users').push({
-        id, email, pass, repeatPass, year, month, date
+        id, firstname, lastname,gender, email, pass, repeatPass, year, month, date
     }).write();
 
     res.json({
@@ -36,10 +36,10 @@ module.exports.postLogin = (req, res) => {
         });
         return;
     }
-
+    res.cookie('userId', checkUser.id);
     res.json({
         status: true,
-        msg: "Login successfully created!"
+        msg: "Login successfully created! "
     });
 };
 
