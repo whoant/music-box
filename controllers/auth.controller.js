@@ -1,5 +1,5 @@
 module.exports.index = (req, res) => {
-    if (req.cookies.userId) {
+    if (req.signedCookies.userId) {
         res.redirect('/users');
         return ;
     }
