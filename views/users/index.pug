@@ -60,52 +60,66 @@ block content
     .container
         .grid-1000
             .avatar
-                .avatar__img
+                if avatar 
+                    label.avatar__img#btn-setAvt(for='avatar', style='background-image: url('+avatar+')')
+                else 
+                    label.avatar__img#btn-setAvt(for='avatar')
+                
                 .avatar__info
                     h4.avatar__info-name #{firstname} #{lastname}
                     p.avatar__info-type Free Account
                 span.btn.btn-gradient GO TO PREMIUM
             .contact
                 h3.title Contact
-                .contact__form
-                    .contact__form-controls
-                        label.contact__form-controls-label(for='firstname') First Name
-                        input#firstname.contact__form-controls-inp(type='text' name='firstname' value= firstname)
-                    .contact__form-controls
-                        label.contact__form-controls-label(for='lastname') Last Name
-                        input#lastname.contact__form-controls-inp(type='text' name='lastname', value= lastname)
-                .contact__form
-                    .contact__form-controls
-                        label.contact__form-controls-label(for='email') Email
-                        input#email.contact__form-controls-inp(type='email' name='email', value= email)
-                .contact__form
-                    .contact__form-controls
-                        label.contact__form-controls-label(for='gender') Gender
-                        select#gender.contact__form-controls-inp(name='gender')
-                            option.contact__form-controls-option(value='false' selected=gender) Male
-                            option.contact__form-controls-option(value='true' selected=gender) Female
+                form(action='/api/users?_method=PUT', method='POST', enctype='multipart/form-data')
+                    input(type='file', id='avatar', name='avatar')
+                    .contact__form
+                        .contact__form-controls
+                            label.contact__form-controls-label(for='firstname') First Name
+                            input#firstname.contact__form-controls-inp(type='text' name='firstname' value= firstname)
+                        .contact__form-controls
+                            label.contact__form-controls-label(for='lastname') Last Name
+                            input#lastname.contact__form-controls-inp(type='text' name='lastname', value= lastname)
+                    .contact__form
+                        .contact__form-controls
+                            label.contact__form-controls-label(for='email') Email
+                            input#email.contact__form-controls-inp(type='email' name='email', value= email)
+                    .contact__form
+                        .contact__form-controls
+                            label.contact__form-controls-label(for='gender') Gender
+                            select#gender.contact__form-controls-inp(name='gender')
+                                if gender
+                                    option.contact__form-controls-option(value='true' ) Female
+                                    option.contact__form-controls-option(value='false') Male
+                                else
+                                    option.contact__form-controls-option(value='false') Male
+                                    option.contact__form-controls-option(value='true' ) Female
+                            
 
-                    .contact__form-controls
-                        label.contact__form-controls-label(for='country') Country
-                        select#country.contact__form-controls-inp(name='country')
-                            option.contact__form-controls-option(value='vn') Vietnamese
-                            option.contact__form-controls-option(value='lao') Lao
-                .contact__form
-                    .contact__form-controls
-                        label.contact__form-controls-label(for='date') Date of Birth
-                        select#date.contact__form-controls-inp(name='date')
-                    .contact__form-controls
-                        label.contact__form-controls-label(for='month') Month
-                        select#month.contact__form-controls-inp(name='month')
-                    .contact__form-controls
-                        label.contact__form-controls-label(for='year') Year
-                        select#year.contact__form-controls-inp(name='year')
-                .contact__connect
-                    h4.contact__connect-name Facebook
-                    p.contact__connect-status Not Connected
-                .contact__connect
-                    h4.contact__connect-name Google
-                    p.contact__connect-status Not Connected
+                        .contact__form-controls
+                            label.contact__form-controls-label(for='country') Country
+                            select#country.contact__form-controls-inp(name='country')
+                                option.contact__form-controls-option(value='vn') Vietnamese
+                                option.contact__form-controls-option(value='lao') Lao
+                    .contact__form
+                        .contact__form-controls
+                            label.contact__form-controls-label(for='year') Year
+                            select#year.contact__form-controls-inp(name='year')
+                        .contact__form-controls
+                            label.contact__form-controls-label(for='month') Month
+                            select#month.contact__form-controls-inp(name='month')
+                        .contact__form-controls
+                            label.contact__form-controls-label(for='date') Date of Birth
+                            select#date.contact__form-controls-inp(name='date')
+                        
+                        
+                    .contact__connect
+                        h4.contact__connect-name Facebook
+                        p.contact__connect-status Not Connected
+                    .contact__connect
+                        h4.contact__connect-name Google
+                        p.contact__connect-status Not Connected
+                    input.contact__btn.btn(type='submit', value='UPDATE')
             .streaming
                 h3.title Streaming
                 h4.streaming__title Audio Quality (Premiun feature)

@@ -5,7 +5,7 @@
 }
 
 .avatar__img{
-    background-image: url(../img/profile.png);
+    background-image: url(/assets/img/profile.png);
     width: 85px;
     height: 85px;
     border-radius: 50%;
@@ -111,6 +111,18 @@
     font-size: 1.4rem;
 }
 
+.contact__btn, .logout {
+    margin: auto;
+    border: 1.5px solid var(--white-color);
+    
+}
+
+.contact__btn {
+    margin-top: 10px;
+    background-color: transparent;
+    outline: none;
+}
+
 .streaming, .account {
     margin-top: 75px;
 }
@@ -163,8 +175,3 @@
     background-color: var(--black-color);
 }
 
-.logout {
-    margin: auto;
-    border: 1.5px solid var(--white-color);
-    
-}
