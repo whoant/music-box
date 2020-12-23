@@ -5,8 +5,6 @@ const router = express.Router();
 
 const controller = require('../controllers/user.controller');
 
-
-
 let storage = multer.diskStorage({
     destination: (req, file, cb) => {
         let path = './public/uploads';
