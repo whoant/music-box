@@ -1,5 +1,3 @@
-const fs = require('fs');
-
 const db = require('../../db');
 
 module.exports.updateUser = (req, res) => {
