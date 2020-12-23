@@ -1,8 +1,7 @@
 const express = require('express');
 const multer = require('multer');
 
-const router = require('../../routes/auth.route');
-const route = express.Router();
+const router = express.Router();
 
 const controller = require('../controllers/user.controller');
 
