@@ -16,12 +16,12 @@ block content
                         a.navbar-item__link(href='#') Browse
                     li.navbar-item.navbar-item--active
                         a.navbar-item__link(href='#') Library
-        .header__path
-            a.header__path-name(href='#')
-                | Account
-            |                 /
-            a.header__path-name.header__path-name--bold(href='#')
-                | Settings
+            .header__path
+                a.header__path-name(href='#')
+                    | Account
+                |                     /
+                a.header__path-name.header__path-name--bold(href='#')
+                    | Settings
         ul.header__right-list
             li.header__right-list-item
                 i.fas.fa-search.header__right-list-icon
@@ -51,20 +51,20 @@ block content
                                         span.resuft__item-info__type
                                             | Album by David Bowie
             li.header__right-list-item
-                a.header__right-list-link(href='/auth')
+                a.header__right-list-link(href='/users')
                     if avatar
                         .header__right-list-user__icon(style='background-image: url('+avatar+');')
-                    else 
-                        .header__right-list-user__icon
-                    span.header__right-list-name
-                        | #{firstname} #{lastname}
+                    else
+                        .header__right-list-user__icon(style='background-image: url(/assets/img/profile-default.png);')
+                    span.header__right-list-name #{firstname} #{lastname}
                     span.header__right-list-dropdown
                         i.fas.fa-chevron-down
+
     .container
         .grid-1000
             .avatar
                 if avatar 
-                    label.avatar__img#btn-setAvt(for='avatar', style='background-image: url('+avatar+')')
+                    label.avatar__img#btn-setAvt(for='avatar', style='background-image: url('+avatar+');')
                 else 
                     label.avatar__img#btn-setAvt(for='avatar')
                 
