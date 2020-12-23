@@ -1,0 +1,65 @@
+.grid > div {
+    margin-bottom: 95px;
+}
+
+.grid > div:last-child {
+    margin-bottom: 0;
+}
+
+.topicMusic__header{
+    font-size: 2.4rem;
+    line-height: 2.4rem;
+
+}
+
+.topicMusic__header-top{
+    display: flex;
+    justify-content: space-between;
+}
+
+.topicMusic__header-title{
+    color: var(--white-color);
+}
+
+.topicMusic__header-view{
+    font-size: 1.6rem;
+}
+
+.topicMusic__header-link{
+    color: var(--text-color);
+}
+
+.topicMusic__header-description{
+    margin-top: 3px;
+    font-size: 1.4rem;
+}
+
+.topicMusic__content{
+    margin-top: 20px;
+}
+
+.topicMusic__content-list{
+    display: flex;
+    justify-content: space-between;
+}
+
+.topicMusic__content-item{
+    /* display: inline-block; */
+    
+}
+
+.topicMusic__content-link{
+    display: inline-block;
+    background-image: url(/assets/img/stories.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 225px;
+    height: 128px;
+    background-size: 100%;
+    transition: all 0.3s linear;
+}   
+
+.topicMusic__content-link:hover{
+    background-size: 120%;
+}

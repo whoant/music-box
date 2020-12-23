@@ -354,7 +354,13 @@
 /* PlayList */
 .playlist{
     margin-top: 60px;
+    padding-bottom: 96px;
 }
+
+.playlist__listmusic {
+    margin-bottom: 95px;
+}
+
 
 .playlist__listmusic-controller{
     display: flex;

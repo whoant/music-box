@@ -332,9 +332,6 @@ input[type='file']{
 
 
 /* List Music */
-.musicSlide {
-    margin-top: 95px; 
-}
 
 .musicSlide-header {
     color: var(--white-color);
@@ -381,19 +378,67 @@ input[type='file']{
 .musicSlide-wrap__link {
     display: flex;
     flex-direction: column;
+    align-items: flex-start;
+}
+.musicSlide-wrap__link--circle {
+    display: flex;
+    flex-direction: column;
     align-items: center;
 }
 
 .musicSlide-wrap__item-img{
-    padding-top: 100%;
+    position: relative;
+    height: 225px;
     width: 225px;
     background-position: center;
     background-repeat: no-repeat;
-    background-size: contain;
     border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-size: 100%;
+    transition: background-size 0.3s linear;
 }
 
-.musicSlide-wrap__item-img--circle{
+.musicSlide-wrap__item-img::before{
+    position: absolute;
+    content: '\f144';
+    font-family: 'Font Awesome 5 Pro';
+    color: var(--white-color);
+    font-size: 8rem;
+    opacity: 0;
+    transform: scale(0.5);
+    transition: transform 0.3s linear;
+}
+
+.musicSlide-wrap__item-img::after{
+    position: absolute;
+    content: '';
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0);
+    transition: background-color 0.3s;
+}
+
+
+.musicSlide-wrap__item-img:hover::before{
+    opacity: 1;
+    transform: scale(1);
+}
+
+.musicSlide-wrap__item-img:hover::after{
+    
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.musicSlide-wrap__item-img:hover{
+    background-size: 120%;
+    
+}
+
+.musicSlide-wrap__link--circle .musicSlide-wrap__item-img{
     border-radius: 50%;
 }
 

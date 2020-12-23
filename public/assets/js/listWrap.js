@@ -1,24 +1,6 @@
 const limitItem = 6;
 const widthHidden = 251;
 
-let test = [
-    {img: 'https://photo-resize-zmp3.zadn.vn/w240_r1x1_jpeg/avatars/e/1/1/2/e1120261421cfec7513423222b0ca94c.jpg', title: 'Tuan 1', heart: '232313'},
-    {img: 'https://photo-resize-zmp3.zadn.vn/w240_r1x1_jpeg/avatars/e/1/1/2/e1120261421cfec7513423222b0ca94c.jpg', title: 'Tuan 2', heart: '232313'},
-    {img: 'https://photo-resize-zmp3.zadn.vn/w240_r1x1_jpeg/avatars/e/1/1/2/e1120261421cfec7513423222b0ca94c.jpg', title: 'Tuan 3', heart: '232313'},
-    {img: 'https://photo-resize-zmp3.zadn.vn/w240_r1x1_jpeg/avatars/e/1/1/2/e1120261421cfec7513423222b0ca94c.jpg', title: 'Tuan 4', heart: '232313'},
-    {img: 'https://photo-resize-zmp3.zadn.vn/w240_r1x1_jpeg/avatars/e/1/1/2/e1120261421cfec7513423222b0ca94c.jpg', title: 'Tuan 5', heart: '232313'},
-    {img: 'https://photo-resize-zmp3.zadn.vn/w240_r1x1_jpeg/avatars/e/1/1/2/e1120261421cfec7513423222b0ca94c.jpg', title: 'Tuan 6', heart: '232313'},
-    {img: 'https://photo-resize-zmp3.zadn.vn/w240_r1x1_jpeg/avatars/e/1/1/2/e1120261421cfec7513423222b0ca94c.jpg', title: 'Tuan 7', heart: '232313'},
-    {img: 'https://photo-resize-zmp3.zadn.vn/w240_r1x1_jpeg/avatars/e/1/1/2/e1120261421cfec7513423222b0ca94c.jpg', title: 'Tuan 8', heart: '232313'},
-    {img: 'https://photo-resize-zmp3.zadn.vn/w240_r1x1_jpeg/avatars/e/1/1/2/e1120261421cfec7513423222b0ca94c.jpg', title: 'Tuan 9', heart: '232313', type: 'square'},
-    {img: 'https://photo-resize-zmp3.zadn.vn/w240_r1x1_jpeg/avatars/e/1/1/2/e1120261421cfec7513423222b0ca94c.jpg', title: 'Tuan 10', heart: '232313', type: 'square'},
-    {img: 'https://photo-resize-zmp3.zadn.vn/w240_r1x1_jpeg/avatars/e/1/1/2/e1120261421cfec7513423222b0ca94c.jpg', title: 'Tuan 11', heart: '232313', type: 'square'},
-    {img: 'https://photo-resize-zmp3.zadn.vn/w240_r1x1_jpeg/avatars/e/1/1/2/e1120261421cfec7513423222b0ca94c.jpg', title: 'Tuan 12', heart: '232313', type: 'square'},
-    {img: 'https://photo-resize-zmp3.zadn.vn/w240_r1x1_jpeg/avatars/e/1/1/2/e1120261421cfec7513423222b0ca94c.jpg', title: 'Tuan 13', heart: '232313', type: 'square'},
-];
-
-
-wrapList({parent: 'test', title: 'Featured artists', content: test});
 
 function wrapList({parent, title,content}){
     let countClick = 0;
@@ -27,7 +9,7 @@ function wrapList({parent, title,content}){
     main.classList.add('musicSlide');
     const header = document.createElement('header')
     header.classList.add('musicSlide-header');
-    header.innerHTML = `<h3 class="musicSlide-header-name">${title}</h3>`;
+    header.innerHTML = `<h3 class="musicSlide-header__name">${title}</h3>`;
 
     const headerBtn = document.createElement('div')
     headerBtn.classList.add('musicSlide-header-btn');
@@ -96,11 +78,11 @@ function wrapList({parent, title,content}){
 
 
 function generationList({type = 'circle', img, title, heart}){
-    let addClass = (type === 'circle') ? 'musicSlide-wrap__item-img--circle' : '';
+    let addClass = (type === 'circle') ? 'musicSlide-wrap__link--circle' : '';
     return `
     <li class="musicSlide-wrap__item">
-        <a href="#" class="musicSlide-wrap__link">
-            <div class="musicSlide-wrap__item-img ${addClass}"style="background-image: url(${img});"></div>
+        <a href="#" class="musicSlide-wrap__link ${addClass}">
+            <div class="musicSlide-wrap__item-img"style="background-image: url(${img});"></div>
             <span class="musicSlide-wrap__item-name">${title}</span>
             <span class="musicSlide-wrap__item-info">
                 <i class="fas fa-heart"></i>

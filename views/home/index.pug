@@ -1,0 +1,111 @@
+extend ../layout/main
+
+block append css
+    link(rel="stylesheet", href="/assets/css/listmusic.css")
+    link(rel="stylesheet", href="/assets/css/home.css")
+
+block content
+    header.header
+        .header__left
+            img.header__logo(src='/assets/img/logo.png' alt='logo' srcset='')
+            nav.header__navbar
+                ul.navbar-list
+                    li.navbar-item
+                        a.navbar-item__link(href='#') Browse
+                    li.navbar-item
+                        a.navbar-item__link(href='#') Library
+                    li.navbar-item.navbar-item--active
+                        a.navbar-item__link(href='/') Home
+        ul.header__right-list
+            li.header__right-list-item
+                i.fas.fa-search.header__right-list-icon
+                .header__right-list-search
+                    input#search.header__right-list-search-inp(type='text' name='search' placeholder='Search')
+                    .header__right-list-resuft
+                        .resuft__head
+                            h3.resuft__header
+                                | Recent searches
+                            span.resuft__clear
+                                | CLEAR
+                        ul.resuft__list
+                            li.resuft__item
+                                a.resuft__link(href='#')
+                                    .resuft__item-img
+                                    .resuft__item-info
+                                        span.resuft__item-info__title
+                                            | No Plan - EP
+                                        span.resuft__item-info__type
+                                            | Album by David Bowie
+                            li.resuft__item
+                                a.resuft__link(href='#')
+                                    .resuft__item-img.resuft__item-img--artist
+                                    .resuft__item-info
+                                        span.resuft__item-info__title
+                                            | No Plan - EP
+                                        span.resuft__item-info__type
+                                            | Album by David Bowie
+            li.header__right-list-item
+                a.header__right-list-link(href='/users')
+                    if avatar
+                        .header__right-list-user__icon(style='background-image: url('+avatar+');')
+                    else
+                        .header__right-list-user__icon(style='background-image: url(/assets/img/profile-default.png);')
+                    span.header__right-list-name #{firstname} #{lastname}
+                    span.header__right-list-dropdown
+                        i.fas.fa-chevron-down
+    .container
+        .grid
+            #recently
+            .topicMusic
+                header.topicMusic__header
+                    .topicMusic__header-top
+                        h3.topicMusic__header-title Browse
+                        span.topicMusic__header-view
+                            a.topicMusic__header-link(href='#') VIEW ALL
+                    p.topicMusic__header-description
+                        | Explore by genre and mood
+                .topicMusic__content
+                    ul.topicMusic__content-list
+                        li.topicMusic__content-item
+                            a.topicMusic__content-link(href='#')
+                        li.topicMusic__content-item
+                            a.topicMusic__content-link(href='#')
+                        li.topicMusic__content-item
+                            a.topicMusic__content-link(href='#')
+                        li.topicMusic__content-item
+                            a.topicMusic__content-link(href='#')
+                        li.topicMusic__content-item
+                            a.topicMusic__content-link(href='#')
+                        li.topicMusic__content-item
+                            a.topicMusic__content-link(href='#')
+            #list-album
+            .topicMusic
+                header.topicMusic__header
+                    .topicMusic__header-top
+                        h3.topicMusic__header-title Browse
+                        span.topicMusic__header-view
+                            a.topicMusic__header-link(href='#') VIEW ALL
+                    p.topicMusic__header-description
+                        | Explore by genre and mood
+                .topicMusic__content
+                    ul.topicMusic__content-list
+                        li.topicMusic__content-item
+                            a.topicMusic__content-link(href='#')
+                        li.topicMusic__content-item
+                            a.topicMusic__content-link(href='#')
+                        li.topicMusic__content-item
+                            a.topicMusic__content-link(href='#')
+                        li.topicMusic__content-item
+                            a.topicMusic__content-link(href='#')
+                        li.topicMusic__content-item
+                            a.topicMusic__content-link(href='#')
+                        li.topicMusic__content-item
+                            a.topicMusic__content-link(href='#')
+
+block script
+    script(src="/assets/js/listWrap.js")
+    script.
+        let data = '#{content}';
+        let content = JSON.parse(data.replace(/&quot;/g,'"'));
+        wrapList({parent: 'recently', title: 'Recently plated', content});
+        wrapList({parent: 'list-album', title: 'Make monday more productive', content});

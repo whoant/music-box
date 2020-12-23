@@ -10,6 +10,7 @@ const app = express();
 
 const authRoute = require('./routes/auth.route');
 const userRoute = require('./routes/user.route');
+const homeRoute = require('./routes/home.route');
 
 const authRouteAPI = require('./api/routes/auth.route');
 const userRouteAPI = require('./api/routes/users.route');
@@ -31,16 +32,13 @@ app.set('views', './views');
 app.use(express.static('public'));
 
 
-app.get('/', (req, res) => {
-    res.redirect('/auth');
-});
-
 app.use('/auth', authRoute);
 
+app.get('/', authMiddleware.requireAuth, homeRoute);
 app.use('/users', authMiddleware.requireAuth, userRoute);
 
 app.use('/api/auth', authRouteAPI);
-app.use('/api/users', userRouteAPI);
+app.use('/api/users', authMiddleware.requireAuth, userRouteAPI);
 
 
 app.listen(port, () => {

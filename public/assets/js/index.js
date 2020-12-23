@@ -40,7 +40,7 @@ document.getElementById('btn-form-login').addEventListener('click', () => {
     axios.post('/api/auth/login', {email,pass})
         .then(({data}) => {
             if (data.status) {
-                window.location.replace('/users');
+                window.location.replace('/');
                 return;
             }
             toast({
