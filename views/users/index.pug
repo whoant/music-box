@@ -52,7 +52,10 @@ block content
                                             | Album by David Bowie
             li.header__right-list-item
                 a.header__right-list-link(href='/auth')
-                    .header__right-list-user__icon(style='background-image: url(/assets/img/profile-default.png);')
+                    if avatar
+                        .header__right-list-user__icon(style='background-image: url('+avatar+');')
+                    else 
+                        .header__right-list-user__icon
                     span.header__right-list-name
                         | #{firstname} #{lastname}
                     span.header__right-list-dropdown

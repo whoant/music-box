@@ -235,6 +235,8 @@
 
 
 .header__right-list-user__icon {
+    background-image: url(/assets/img/profile-default.png);
+    border-radius: 50%;
     width: 30px;
     height: 30px;
     font-size: 3rem;
