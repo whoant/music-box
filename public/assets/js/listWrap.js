@@ -2,7 +2,7 @@ const limitItem = 6;
 const widthHidden = 251;
 
 
-function wrapList({parent, title,content}){
+function wrapList({parent, title, items}){
     let countClick = 0;
 
     const main = document.createElement('div')
@@ -16,31 +16,32 @@ function wrapList({parent, title,content}){
 
     const nextBtn = document.createElement('span');
     nextBtn.classList.add('musicSlide-header__btn-link');
-    nextBtn.classList.add('musicSlide-header__btn-link--active');
+    if (items.length > limitItem) nextBtn.classList.add('musicSlide-header__btn-link--active');
+    
     nextBtn.innerHTML = '<i class="fas fa-chevron-right"></i>';
 
     const prevBtn = document.createElement('span');
     prevBtn.classList.add('musicSlide-header__btn-link');
     prevBtn.innerHTML = '<i class="fas fa-chevron-left"></i>';
 
-    const divContent = document.createElement('div');
-    divContent.classList.add('musicSlide-wrap');
+    const divitems = document.createElement('div');
+    divitems.classList.add('musicSlide-wrap');
 
     const listWrap = document.createElement('ul');
     listWrap.classList.add('musicSlide-wrap__list');
-    let listItem = content.map(item => generationList(item));
+    let listItem = items.map(item => generationList(item));
     listWrap.innerHTML = listItem.join('');
     
 
-    nextBtn.onclick = function(e){
+    nextBtn.onclick = function(){
         countClick++;
-        let countArtist = content.length; // get length item
-        let countShow = Math.floor(countArtist / limitItem);
-        if (countClick > countShow) {
-            countClick = countShow;
+        let countArtist = items.length; // get length item
+        let countShow = Math.ceil(countArtist / limitItem);
+        if (countClick > countShow - 1) {
+            countClick = countShow - 1;
             return;
         }
-        this.classList.toggle('musicSlide-header__btn-link--active', countClick < countShow);
+        this.classList.toggle('musicSlide-header__btn-link--active', countClick < countShow - 1);
         prevBtn.classList.toggle('musicSlide-header__btn-link--active', countClick > 0);
         let tempWidth;
         if ((countClick + 1) * limitItem > countArtist) tempWidth = (countArtist - limitItem) * widthHidden + 13;
@@ -48,7 +49,7 @@ function wrapList({parent, title,content}){
         listWrap.style.transform = `translateX(-${tempWidth}px)`;
     }
 
-    prevBtn.onclick = function(e) {
+    prevBtn.onclick = function() {
         countClick--;
         let countArtist = document.getElementsByClassName('musicSlide-wrap__item').length;
         if (countClick < 0) {
@@ -69,16 +70,23 @@ function wrapList({parent, title,content}){
     headerBtn.appendChild(nextBtn);
     header.appendChild(headerBtn);
 
-    divContent.appendChild(listWrap);
+    divitems.appendChild(listWrap);
     main.appendChild(header);
-    main.appendChild(divContent);
+    main.appendChild(divitems);
 
     document.getElementById(parent).appendChild(main);
 }
 
 
-function generationList({type = 'circle', img, title, heart}){
+function generationList({
+        type = 'circle', 
+        img, 
+        title,
+        heart
+    }){
     let addClass = (type === 'circle') ? 'musicSlide-wrap__link--circle' : '';
+
+
     return `
     <li class="musicSlide-wrap__item">
         <a href="#" class="musicSlide-wrap__link ${addClass}">

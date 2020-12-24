@@ -59,53 +59,43 @@ block content
             .topicMusic
                 header.topicMusic__header
                     .topicMusic__header-top
-                        h3.topicMusic__header-title Browse
+                        h3.topicMusic__header-title #{items[1].title}
                         span.topicMusic__header-view
                             a.topicMusic__header-link(href='#') VIEW ALL
                     p.topicMusic__header-description
                         | Explore by genre and mood
                 .topicMusic__content
                     ul.topicMusic__content-list
-                        li.topicMusic__content-item
-                            a.topicMusic__content-link(href='#')
-                        li.topicMusic__content-item
-                            a.topicMusic__content-link(href='#')
-                        li.topicMusic__content-item
-                            a.topicMusic__content-link(href='#')
-                        li.topicMusic__content-item
-                            a.topicMusic__content-link(href='#')
-                        li.topicMusic__content-item
-                            a.topicMusic__content-link(href='#')
-                        li.topicMusic__content-item
-                            a.topicMusic__content-link(href='#')
+                        mixin item(url)
+                            li.topicMusic__content-item
+                                a.topicMusic__content-link(href='#', style='background-image: url('+url+')')
+
+                        each item in items[1].items
+                            + item(item.img)
+                        
             #list-album
             .topicMusic
                 header.topicMusic__header
                     .topicMusic__header-top
-                        h3.topicMusic__header-title Browse
+                        h3.topicMusic__header-title #{items[2].title}
                         span.topicMusic__header-view
                             a.topicMusic__header-link(href='#') VIEW ALL
                     p.topicMusic__header-description
                         | Explore by genre and mood
                 .topicMusic__content
                     ul.topicMusic__content-list
-                        li.topicMusic__content-item
-                            a.topicMusic__content-link(href='#')
-                        li.topicMusic__content-item
-                            a.topicMusic__content-link(href='#')
-                        li.topicMusic__content-item
-                            a.topicMusic__content-link(href='#')
-                        li.topicMusic__content-item
-                            a.topicMusic__content-link(href='#')
-                        li.topicMusic__content-item
-                            a.topicMusic__content-link(href='#')
-                        li.topicMusic__content-item
-                            a.topicMusic__content-link(href='#')
+                        each item in items[2].items
+                            + item(item.img)
+                        
 
 block script
     script(src="/assets/js/listWrap.js")
     script.
-        let data = '#{content}';
+        let data = '#{items[0]}';
         let content = JSON.parse(data.replace(/&quot;/g,'"'));
-        wrapList({parent: 'recently', title: 'Recently plated', content});
-        wrapList({parent: 'list-album', title: 'Make monday more productive', content});
+
+        let slide3 = '#{items[3]}';
+        let content3 = JSON.parse(slide3.replace(/&quot;/g,'"'));
+        
+        wrapList({parent: 'recently', title: content.title, items: content.items});
+        wrapList({parent: 'list-album', title: content3.title, items: content3.items});

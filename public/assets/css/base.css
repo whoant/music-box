@@ -371,7 +371,6 @@ input[type='file']{
 }
 .musicSlide-wrap__item {
     width: 225px;
-    height: 275px;
     margin: 0 13px;
 }
 
@@ -379,10 +378,9 @@ input[type='file']{
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    height: 100%;
 }
 .musicSlide-wrap__link--circle {
-    display: flex;
-    flex-direction: column;
     align-items: center;
 }
 
@@ -408,7 +406,12 @@ input[type='file']{
     font-size: 8rem;
     opacity: 0;
     transform: scale(0.5);
-    transition: transform 0.3s linear;
+    transition: all 0.3s linear;
+}
+
+.musicSlide-wrap__item-img:hover::before{
+    opacity: 1;
+    transform: scale(1);
 }
 
 .musicSlide-wrap__item-img::after{
@@ -422,11 +425,6 @@ input[type='file']{
     transition: background-color 0.3s;
 }
 
-
-.musicSlide-wrap__item-img:hover::before{
-    opacity: 1;
-    transform: scale(1);
-}
 
 .musicSlide-wrap__item-img:hover::after{
     
@@ -447,7 +445,15 @@ input[type='file']{
     font-size: 1.6rem;
     font-weight: 500;
     color: var(--white-color);
+    
+    line-height: 2rem;
+    flex-grow: 1;
 }
+
+.musicSlide-wrap__link--circle .musicSlide-wrap__item-name {
+    text-align: center;
+}
+
 .musicSlide-wrap__item-info {
     font-size: 1.4rem;
     color: var(--text-color)
