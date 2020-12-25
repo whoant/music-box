@@ -7,46 +7,44 @@ module.exports.index = async(req, res) => {
     
     try {
         const data = await Promise.all([ZingMp3.getHome(), ZingMp3.getHome(2)]);
-        let slide0 = data[0].items[2].items.map(item => {
-            return {
-                encodeId: item.encodeId,
-                img: item.thumbnailM,
-                title: item.title,
-                heart: 110000
-            };
+        let slide0 = {
+            title: data[0].items[2].title,
+            items: data[0].items[2].items.map(item => {
+                return {
+                    encodeId: item.encodeId,
+                    img: item.thumbnailM,
+                    title: item.title,
+                    heart: 110000
+                };
+    
+            })
+        };
 
-        });
-
-        let slider = data[1].items[1];
-
-        let browse = {
-            title: slider.title,
-            items: slider.items.map(item => {
+        let slide1 = {
+            title: data[1].items[1].title,
+            items: data[1].items[1].items.map(item => {
                 return {
                     encodeId: item.encodeId,
                     img: item.thumbnailHasText
                 };
             })
         };
-        browse.items.length = 6;
+        slide1.items.length = 6;
 
-        let slider2 = data[1].items[2];
-        let topic = {
-            title: slider2.title,
-            items: slider2.items.map(item => {
+        let slide2 = {
+            title: data[1].items[2].title,
+            items: data[1].items[2].items.map(item => {
                 return {
                     encodeId: item.encodeId,
                     img: item.thumbnailHasText
                 };
             })
         };
-        
-        topic.items.length = 6;
+        slide2.items.length = 6;
 
-        let slide3 = data[1].items[0];
-        let radio = {
-            title: slide3.title,
-            items: slide3.items.map(item => {
+        let slide3 = {
+            title: data[1].items[0].title,
+            items: data[1].items[0].items.map(item => {
                 return {
                     encodeId: item.encodeId,
                     img: item.thumbnailM,
@@ -58,12 +56,11 @@ module.exports.index = async(req, res) => {
         }
 
         let info = db.get('users').find({id}).value();
-    
         let items = [];
-        items.push(JSON.stringify({items: slide0, title: data[0].items[2].title}));
-        items.push(browse);
-        items.push(topic);
-        items.push(JSON.stringify(radio));
+        items.push(JSON.stringify(slide0));
+        items.push(slide1);
+        items.push(slide2);
+        items.push(JSON.stringify(slide3));
         
         res.render('home/index', {
             ...info,

@@ -1,4 +1,3 @@
-
 class PlayList{
     constructor(musics){
         this.listMusic = musics;
@@ -34,33 +33,21 @@ class PlayList{
         this.sound.stop();  
     }
 
-    next(){
+    run(streaming){
         this.stop();
-        this.index = (this.index < this.listMusic.length - 1) ? ++this.index : 0;
+        
         this.sound = new Howl({
-            src: [this.listMusic[this.index].streaming], 
+            src: [streaming], 
             format: ['mp3'],
             html5: true,
         });
-    }
-
-    prev(){
-        this.stop();
-        this.index = (this.index > 0) ? --this.index : this.listMusic.length - 1;
-        
-        this.sound = new Howl({
-            src: [this.listMusic[this.index].streaming], 
-            format: ['mp3'],
-            html5: true
-        });
-        
     }
 
     playing(){
         return this.sound.playing();
     }
 
-    playIndex(idMusic){
+    playIndex(idMusic, streaming){
         this.stop();
         this.listMusic.forEach((item, i) => {
             if (item.id === idMusic) {
@@ -70,7 +57,7 @@ class PlayList{
             }
         });
         this.sound = new Howl({
-            src: [this.listMusic[this.index].streaming], 
+            src: [streaming], 
             format: ['mp3'],
             html5: true,
         });
@@ -108,6 +95,14 @@ class PlayList{
     infoMusic(index = null){
         if (index === null) index = this.index;
         return this.listMusic[index];
+    }
+    getMusicNext(){
+        this.index = (this.index < this.listMusic.length - 1) ? ++this.index : 0;
+        return this.listMusic[this.index];
+    }
+    getMusicPrev(){
+        this.index = (this.index > 0) ? --this.index : this.listMusic.length - 1;
+        return this.listMusic[this.index];
     }
 
     getListMusic(){

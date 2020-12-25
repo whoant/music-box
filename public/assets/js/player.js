@@ -1,4 +1,91 @@
-const sound = new PlayList(listMusic);
+let sound;
+
+getSection(idPlayList);
+
+document.addEventListener('DOMContentLoaded', async() => {
+    try {
+        let data = await getDetailPlayList(idPlayList);
+        let firstSong = await getStreaming(data.song.items[0].id);
+        data.song.items[0].streaming = firstSong[128];
+        sound = new PlayList(data.song.items);
+
+        sound.once('load', () => {
+            updateMusicCurrent();
+            getDurationTime();
+            genderQueueMusic();
+            render();
+        });
+        
+        sound.once('play', updateTime);
+
+    } catch (err) {
+        console.log(err);
+    }
+});
+
+async function getSection(id) {
+        try {
+            const { data } = await axios('/api/getSection', {
+                params: {
+                    id,
+                }
+            });
+
+            let res = {
+                title: data[0].title,
+                items: data[0].items.map(item => {
+                    return {
+                        img: item.thumbnail,
+                        title: item.name,
+                        encodeId: item.id,
+                        heart: item.totalFollow
+                    }
+                })
+            }
+
+            
+            wrapList({parent: 'list-artists', ...res});
+        } catch (error) {
+            console.log(error);
+        }
+    
+
+}
+
+function getDetailPlayList(id) {
+    return new Promise(async (resolve, reject) => {
+        try {
+            const { data } = await axios('/api/playlist', {
+                params: {
+                    id,
+                }
+            });
+             if (data.err) reject(data);
+             resolve(data);
+        } catch (error) {
+            reject(error);
+        }
+    });
+
+}
+
+function getStreaming(id) {
+    return new Promise(async (resolve, reject) => {
+        try {
+            const { data } = await axios('/api/song', {
+                params: {
+                    id,
+                }
+            });
+             if (data.err) reject(data);
+             resolve(data);
+        } catch (error) {
+            reject(error);
+        }
+    });
+
+}
+
 
 const changeIcon = document.getElementById('play-icon');
 document.getElementById('play').addEventListener('click', () => {
@@ -14,25 +101,35 @@ document.getElementById('play').addEventListener('click', () => {
 });
 
 document.getElementById('next').addEventListener('click', () => {
-    sound.next();
-    eventChangeMusic();
+    let {id} = sound.getMusicNext();
+
+    getStreaming(id).then(data => {
+        sound.run(data[128]);
+        eventChangeMusic();
+    })
+    .catch(err => console.log(err));
 });
 
 document.getElementById('prev').addEventListener('click', () => {
-    sound.prev();
-    eventChangeMusic();
+    let {id} = sound.getMusicPrev();
+    getStreaming(id).then(data => {
+        sound.run(data[128]);
+        eventChangeMusic();
+    })
+    .catch(err => console.log(err));
+
 });
 
 function eventChangeMusic() {
     if (!sound.playing()) changeIcon.className = changeIcon.className.replace('play', 'stop');
-    
+
     sound.once('load', () => {
         sound.play();
         updateMusicCurrent();
         getDurationTime();
         genderQueueMusic();
         render();
-        
+
     });
     sound.once('play', updateTime);
 }
@@ -78,15 +175,7 @@ document.getElementById('volume-btn').addEventListener('click', function (e) {
     document.getElementById('volume-task').style.width = percent + "%";
 });
 
-sound.once('load', () => {
-    // sound.play();
-    updateMusicCurrent();
-    getDurationTime();
-    genderQueueMusic();
-    render();
-});
 
-sound.once('play', updateTime);
 
 function render() {
     const { thumbnail, artists_names, title } = sound.infoMusic();
@@ -152,14 +241,14 @@ function genderQueueMusic() {
     let currentSong = sound.infoMusic();
     const listCurMusic = sound.getListMusic();
     let i = 0
-    for (; i < listCurMusic.length; i++){
+    for (; i < listCurMusic.length; i++) {
         if (listCurMusic[i].id === currentSong.id) break;
     }
-    
+
     for (++i; i < listCurMusic.length; i++) renderMusicToQueue(listCurMusic[i]);
 }
 
-function renderMusicToQueue({ thumbnail, title, artists_names, time, id }) {
+function renderMusicToQueue({ thumbnail, title, artists_names, formatDuration, id }) {
     const main = document.getElementById('queue-music');
 
     const music = document.createElement('li');
@@ -167,23 +256,27 @@ function renderMusicToQueue({ thumbnail, title, artists_names, time, id }) {
     music.setAttribute('id-music', id);
 
     music.ondblclick = () => {
-        sound.playIndex(id);
-        eventChangeMusic();
+
+        getStreaming(id).then(data => {
+            sound.playIndex(id, data[128]);
+            eventChangeMusic();
+        })
+        .catch(err => console.log(err));
     }
 
     music.onclick = (e) => {
-        if (e.target.closest('.player-queue__music-btn__icon')){
+        if (e.target.closest('.player-queue__music-btn__icon')) {
             sound.remove(getIndexFromQueue(id))
             main.removeChild(music);
         }
     }
 
-    music.innerHTML = 
-    `
+    music.innerHTML =
+        `
         <div class="player-queue__music-img" style="background-image: url(${thumbnail});"></div>
         <div class="player-queue__music-info">
             <span class="player-queue__music-info__title">${title}</span>
-            <span class="player-queue__music-info__artist">${artists_names} / ${time}</span>
+            <span class="player-queue__music-info__artist">${artists_names} / ${formatDuration}</span>
         </div>
         <div class="player-queue__music-btn">
             <span class="player-queue__music-btn__icon player-queue__music-btn__icon--hidden">
@@ -198,7 +291,7 @@ function renderMusicToQueue({ thumbnail, title, artists_names, time, id }) {
 }
 
 
-function getIndexFromQueue(id){
+function getIndexFromQueue(id) {
     const listCurMusic = sound.getListMusic();
     return listCurMusic.findIndex(item => item.id == id);
 }

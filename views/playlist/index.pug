@@ -1,0 +1,188 @@
+extend ../layout/main.pug
+
+block append css
+    link(rel='stylesheet' href='/assets/css/listmusic.css')
+    link(rel='stylesheet' href='/assets/css/player.css')
+    
+block content
+    header.header
+        .header__left
+            img.header__logo(src='/assets/img/logo.png' alt='logo' srcset='')
+            nav.header__navbar
+                ul.navbar-list
+                    li.navbar-item
+                        a.navbar-item__link(href='/') Home
+                    li.navbar-item
+                        a.navbar-item__link(href='#') Library
+                    li.navbar-item.navbar-item--active
+                        a.navbar-item__link(href='#') Browse
+            .header__path
+                a.header__path-name(href='#')
+                    | ROCK
+                |                     /
+                a.header__path-name.header__path-name--bold(href='#')
+                    | #{playList.title}
+        ul.header__right-list
+            li.header__right-list-item
+                i.fas.fa-search.header__right-list-icon
+                .header__right-list-search
+                    input#search.header__right-list-search-inp(type='text' name='search' placeholder='Search')
+                    .header__right-list-resuft
+                        .resuft__head
+                            h3.resuft__header
+                                | Recent searches
+                            span.resuft__clear
+                                | CLEAR
+                        ul.resuft__list
+                            li.resuft__item
+                                a.resuft__link(href='#')
+                                    .resuft__item-img
+                                    .resuft__item-info
+                                        span.resuft__item-info__title
+                                            | No Plan - EP
+                                        span.resuft__item-info__type
+                                            | Album by David Bowie
+                            li.resuft__item
+                                a.resuft__link(href='#')
+                                    .resuft__item-img.resuft__item-img--artist
+                                    .resuft__item-info
+                                        span.resuft__item-info__title
+                                            | No Plan - EP
+                                        span.resuft__item-info__type
+                                            | Album by David Bowie
+            li.header__right-list-item
+                a.header__right-list-link(href='/users')
+                    if info.avatar
+                        .header__right-list-user__icon(style='background-image: url('+info.avatar+');')
+                    else
+                        .header__right-list-user__icon(style='background-image: url(/assets/img/profile-default.png);')
+                    span.header__right-list-name #{info.firstname} #{info.lastname}
+                    span.header__right-list-dropdown
+                        i.fas.fa-chevron-down
+    .container
+        .grid
+            .topic
+                .topic__img(style='background-image: url('+playList.thumbnail+');')
+                    
+                .topic__detail
+                    span.topic__detail-type
+                        | Playlist
+                    h3.topic__detail-name #{playList.title}
+                    span.topic__detail-author
+                        | Võ Tuân
+                    span.topic__detail-list
+                        | #{playList.song.total} songs, 9 hr 13 min
+                .topic__controler
+                    span#play-music.topic__controler-pause(href='#') PLAY
+                    .topic__controler-combo
+                        span.topic__controler-click
+                            i.fas.fa-heart-circle.topic__controler-icon
+                        span.topic__controler-click
+                            i.fas.fa-heart-circle.topic__controler-icon
+            .playlist
+                .playlist__listmusic
+                    .playlist__listmusic-controller
+                        input#search-playlist.playlist__listmusic-controller-search(type='text' name='search-playlist' placeholder='Playlist search')
+                        .playlist__listmusic-controller-info
+                            p.playlist__listmusic-controller-info__name
+                                | Playlist songs
+                            span.playlist__listmusic-controller-info-btn
+                                i.fas.fa-angle-up.playlist__listmusic-controller-info__icon
+
+
+                    mixin renderListMusic(i, thumbnail, title, artist, duration)
+                        li.list__item-card
+                            span.list__item-card-prefix #{i}
+                            .list__item-card__title
+                                a.list__item-card__title-img(href='#' style='background-image: url('+thumbnail+');')
+                                span.list__item-card__title-name #{title}
+                            span.list__item-card__artist #{artist}
+                            span.list__item-card__album 123
+                            span.list__item-card__time #{duration}
+                            .list__item-card__controller
+                                span.list__item-card__controller-link
+                                    i.fas.fa-ellipsis-h.list__item-card__controller-icon
+                                span.list__item-card__controller-link
+                                    i.far.fa-heart.list__item-card__controller-icon
+                                span.list__item-card__controller-link
+                                    i.fas.fa-plus.list__item-card__controller-icon
+                    - var i = 1;
+                    ul#list-music.playlist__listmusic-list
+                        each item in playList.song.items
+                            + renderListMusic(i++, item.thumbnail, item.title, item.artists_names, item.duration)
+                            
+
+                #list-artists
+    footer.footer
+    #player.player
+        .player-info
+            #thumbnail.player-info__img
+            .player-info__author
+                marquee(behavior='' direction='')
+                    #title.player-info__author-title
+                    #author.player-info__author-name
+            .player-info__btn
+                span.player-info__btn-contain
+                    i.far.fa-heart.player-icon
+                span.player-info__btn-contain
+                    i.fas.fa-check.player-icon.player-icon--active
+        .player-controls
+            .player-controls__btn
+                span#random.player-controls__btn-contain
+                    i.far.fa-random.player-icon.player-controls__btn-icon
+                span#prev.player-controls__btn-contain
+                    i.fas.fa-step-backward.player-icon.player-controls__btn-icon
+                span#play.player-controls__btn-contain
+                    i#play-icon.fas.fa-play.player-icon.player-controls__btn-icon
+                span#next.player-controls__btn-contain
+                    i.fas.fa-step-forward.player-icon.player-controls__btn-icon
+                span#repeat.player-controls__btn-contain
+                    i.fas.fa-repeat.player-icon.player-controls__btn-icon
+            .player-controls__progress
+                span#cur-time 00.00
+                #progress-bar.player-controls__progress-bar
+                    #progress-bar__task.player-controls__progress-bar__task
+                span#end-time 4.30
+        .player-setting
+            span.player-queue
+                span#btn-queue-music
+                    i.fas.fa-th-list.player-icon
+                #queue-music-current.player-queue__music
+                    header.player-queue__music-head
+                        h3.player-queue__music-head-title
+                            | Queue: #{playList.title}
+                        span#queue-close.player-queue__music-head-close
+                            i.fas.fa-times.player-queue-icon
+                    .player-queue__music-current
+                        #current-thumbnail.player-queue__music-img(style='')
+                        .player-queue__music-info
+                            span#current-title.player-queue__music-info__title.player-queue__music-info__title--active
+                                | Rebel Rebel
+                            span#current-info.player-queue__music-info__artist.player-queue__music-info__artist--active
+                                | David Bowie / 4:29
+                        .player-queue__music-btn
+                            span.player-queue__music-btn__icon
+                                i.fas.fa-ellipsis-h
+                            span.player-queue__music-btn__icon
+                                i.far.fa-heart
+                    .player-queue__music-next
+                        header.player-queue__music-next__header
+                            h3.next__header-title Next Up
+                            span.next__header-shuffle SHUFFLE
+                        ul#queue-music.player-queue__music-next__list
+            .player-setting__volume
+                span#volume
+                    i#volume-icon.far.fa-volume-up.player-icon
+                #volume-btn.volume__progress
+                    #volume-task.volume__progerss-task
+block script
+    script(src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.1/howler.core.min.js")
+    script(src="https://unpkg.com/axios/dist/axios.min.js")
+    script(src="/assets/js/listWrap.js")
+    script(src="/assets/js/PlayList.js")
+    script(src="/assets/js/script.js")
+    script.
+        const idPlayList = '#{playList.encodeId}';
+    script(src="/assets/js/player.js")
+    
+    

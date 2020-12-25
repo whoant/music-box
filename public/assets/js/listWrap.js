@@ -82,6 +82,7 @@ function generationList({
         type = 'circle', 
         img, 
         title,
+        encodeId,
         heart
     }){
     let addClass = (type === 'circle') ? 'musicSlide-wrap__link--circle' : '';
@@ -89,7 +90,7 @@ function generationList({
 
     return `
     <li class="musicSlide-wrap__item">
-        <a href="#" class="musicSlide-wrap__link ${addClass}">
+        <a href="/playlist/${encodeId}" class="musicSlide-wrap__link ${addClass}">
             <div class="musicSlide-wrap__item-img"style="background-image: url(${img});"></div>
             <span class="musicSlide-wrap__item-name">${title}</span>
             <span class="musicSlide-wrap__item-info">

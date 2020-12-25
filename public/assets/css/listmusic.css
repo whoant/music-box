@@ -98,6 +98,8 @@
 .header__path-name {
     margin: 0 3px;
     color: var(--text-color);
+    text-align: center;
+    line-height: 2rem;
 }
 
 .header__path-name--bold {
@@ -134,7 +136,7 @@
     height: 36px;
     background-color: #898B91;
     border-radius: 20px;
-    border: 2px solid var(--black-color);
+    border: 2px solid transparent;
     font-size: 1.6rem;
     color: var(--white-color);
     padding-left: 40px;
@@ -152,8 +154,8 @@
 }
 
 .header__right-list-resuft{
-    display: none;
     position: absolute;
+    display: none;
     height: 400px;
     top: calc(100% + 10px);
     left: 0;
@@ -162,8 +164,8 @@
     z-index: 1;
     border-radius: 4px;
     transform-origin: left top;
-    animation: listSearchGrowth ease-in 0.5s;
     will-change: opacity, transform;
+    animation: listSearchGrowth ease-in 0.5s;
 }
 
 .header__right-list-search-inp:focus ~ .header__right-list-resuft{
@@ -320,6 +322,7 @@
     display: flex;    
     align-items: center;
     margin-left: auto;
+    min-width: 300px;
 }
 
 .topic__controler-pause{

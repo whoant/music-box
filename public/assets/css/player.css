@@ -178,6 +178,7 @@
     will-change: transform;
     transform: translateY(710px);
     transition: transform 1s ease-out;
+    overflow: hidden;
 }
 
 .player-queue__music--active{
@@ -195,6 +196,7 @@
 .player-queue__music-head-title{
     margin: 0;
     font-size: 1.8rem;
+    line-height: 2.4rem;
 }
 
 .player-queue__music-head-close{
@@ -256,7 +258,7 @@
 }
 
 .player-queue__music-btn{
-    
+    min-width: 60px;
 }
 
 .player-queue__music-btn__icon{
