@@ -20,7 +20,7 @@ spec:
           image: ghcr.io/whoant/music-box:VERSION
           imagePullPolicy: IfNotPresent
           ports:
-            - containerPort: 3000
+            - containerPort: 8000
           resources:
             limits:
               memory: "200Mi"
