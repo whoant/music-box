@@ -1,4 +1,4 @@
-const ZingMp3 = require('../modules/ZingMp3');
+const ZingMp3 = require('zingmp3-api');
 const db = require('../db');
 
 const utilities = require('../utilities/index');
@@ -29,12 +29,12 @@ module.exports.index = async(req, res) => {
 
         let id = req.signedCookies.userId;
 
-        let info = db.get('users').find({id}).value();
+        let info = db.get('users').find({ id }).value();
 
-        res.render('playlist/index', {info, playList});
+        res.render('playlist/index', { info, playList });
     } catch (error) {
         console.log(error);
     }
-    
-    
+
+
 };

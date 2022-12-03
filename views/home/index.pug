@@ -47,7 +47,7 @@ block content
             li.header__right-list-item
                 a.header__right-list-link(href='/users')
                     if avatar
-                        .header__right-list-user__icon(style='background-image: url('+avatar+');')
+                        .header__right-list-user__icon(style='background-image: url(' + avatar + ');')
                     else
                         .header__right-list-user__icon(style='background-image: url(/assets/img/profile-default.png);')
                     span.header__right-list-name #{firstname} #{lastname}
@@ -68,11 +68,13 @@ block content
                     ul.topicMusic__content-list
                         mixin item(url)
                             li.topicMusic__content-item
-                                a.topicMusic__content-link(href='#', style='background-image: url('+url+')')
-
+                                a.topicMusic__content-link(href='#', style='background-image: url(' + url + ')')
+                        //div
+                        //- console.log(items[1])
+                        //div
                         each item in items[1].items
                             + item(item.img)
-                        
+
             #list-album
             .topicMusic
                 header.topicMusic__header
@@ -86,16 +88,17 @@ block content
                     ul.topicMusic__content-list
                         each item in items[2].items
                             + item(item.img)
-                        
+
 
 block script
     script(src="/assets/js/listWrap.js")
     script.
-        let data = '#{items[0]}';
-        let content = JSON.parse(data.replace(/&quot;/g,'"'));
 
-        let slide3 = '#{items[3]}';
-        let content3 = JSON.parse(slide3.replace(/&quot;/g,'"'));
+        let data = `#{items[0]}`;
+        let content = JSON.parse(data.replace(/&quot;/g, '"'));
         
-        wrapList({parent: 'recently', title: content.title, items: content.items});
-        wrapList({parent: 'list-album', title: content3.title, items: content3.items});
+        let slide3 = `#{items[3]}`;
+        let content3 = JSON.parse(slide3.replace(/&quot;/g, '"'));
+
+        wrapList({ parent: 'recently', title: content.title, items: content.items });
+        wrapList({ parent: 'list-album', title: content3.title, items: content3.items });

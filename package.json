@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "nodemon --inspect index.js",
+    "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
@@ -22,7 +23,8 @@
     "request": "^2.88.2",
     "request-promise": "^4.2.6",
     "shortid": "^2.2.16",
-    "tough-cookie-file-store": "^2.0.2"
+    "tough-cookie-file-store": "^2.0.2",
+    "zingmp3-api": "^1.0.10"
   },
   "devDependencies": {
     "nodemon": "^2.0.6"

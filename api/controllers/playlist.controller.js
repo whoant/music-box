@@ -1,11 +1,12 @@
-const ZingMp3 = require('../../modules/ZingMp3');
+const ZingMp3 = require('zingmp3-api');
 const utilities = require('../../utilities/index');
 
 module.exports.getPlayList = async(req, res) => {
-    let {id} = req.query;
+    let { id } = req.query;
 
-    try {        
+    try {
         const data = await ZingMp3.getDetailPlaylist(id);
+        console.log(data);
         let playList = {
             title: data.title,
             thumbnail: data.thumbnailM,
@@ -30,5 +31,5 @@ module.exports.getPlayList = async(req, res) => {
         res.json(error);
     }
 
-    
+
 };
